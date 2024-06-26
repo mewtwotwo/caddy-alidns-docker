@@ -2,19 +2,19 @@ name: Build and Push Caddy Docker Image
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 时间的午夜触发
+    - cron: '0 0 * * *'  # Every day at midnight UTC
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     env:
-      NODE_VERSION: '20'  # 设置 Node.js 版本为 20
+      NODE_VERSION: '20'  # Set Node.js version to 20
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # 需要传递 token 参数
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -31,9 +31,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            yourdockerhubusername/caddy:latest
-            yourdockerhubusername/caddy:v1.0.0  # 使用语义化版本号
-            yourdockerhubusername/caddy:v$GITHUB_SHA
+            linkmew/caddy-ali:latest
+            linkmew/caddy-ali:${{ github.sha }}
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
