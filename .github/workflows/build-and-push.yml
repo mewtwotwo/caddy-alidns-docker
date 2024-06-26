@@ -33,6 +33,6 @@ jobs:
           context: .
           push: true
           tags: 
-            yourdockerhubusername/caddy:latest
-            yourdockerhubusername/caddy:$GITHUB_SHA
+            linkmew/caddy:latest
+            linkmew/caddy:$GITHUB_SHA
           file: ./Dockerfile
