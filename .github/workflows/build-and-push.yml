@@ -3,6 +3,10 @@ name: Build and Push Caddy Docker Image
 #on:
   #schedule:
     #- cron: '0 0 * * *'  # 每天 UTC 时间的午夜触发
+on:
+  push:
+    paths:
+      - .github/workflows/build-and-push.yml
 
 jobs:
   build-and-push:
