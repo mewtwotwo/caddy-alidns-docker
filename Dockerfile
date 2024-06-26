@@ -1,10 +1,14 @@
-# 使用官方 caddy:alpine 作为基础镜像
-FROM caddy:alpine
+FROM golang:alpine AS build
 
-# 安装 xcaddy 工具，用于构建自定义 Caddy 版本
-RUN apk add --no-cache curl \
-    && curl -fsSL https://github.com/caddyserver/xcaddy/releases/latest/download/xcaddy-alpine-linux-amd64 -o /usr/bin/xcaddy \
-    && chmod +x /usr/bin/xcaddy
+RUN go version \
+    && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
-# 构建 Caddy，包含阿里云 DNS 插件
+WORKDIR /go
+
 RUN xcaddy build --with github.com/caddy-dns/alidns
+
+# Get caddy alpine image to keep the container as small as possible
+FROM caddy:alpine AS final
+
+# Copy caddy executable from builder step
+COPY --from=build /go/caddy /usr/bin/caddy
