@@ -32,5 +32,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: your-dockerhub-username/your-repository-name:latest
+          tags: 
+            yourdockerhubusername/caddy:latest
+            yourdockerhubusername/caddy:$GITHUB_SHA
           file: ./Dockerfile
