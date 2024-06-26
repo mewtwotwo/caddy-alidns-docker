@@ -3,7 +3,7 @@ name: Build and Push Caddy Docker Image
 on:
   push:
     paths:
-      - .github/workflows/build-and-push.yml
+      - .github/workflows/build-and-push.yml   #111
 
 jobs:
   build-and-push:
