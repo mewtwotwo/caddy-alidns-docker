@@ -31,8 +31,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            linkmew/caddy-ali:latest
-            linkmew/caddy-ali:${{ github.sha }}
+            linkmew/caddy-alidns:latest
+            linkmew/caddy-alidns:${{ github.sha }}
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
